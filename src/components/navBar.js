@@ -1,14 +1,11 @@
 import React from 'react';
-import '../styles/navbar.css';
+import { Navbar } from 'react-materialize';
 
+const brandColor = <span style={{ color: '#56276f', marginLeft: '10px', fontWeight: 'bold' }}>NoteTakingApp</span>;
 const NavBar = () => (
-	<div>
-		<nav>
-			<div className="nav-wrapper">
-				<a href="#" className={'align-navbar-title'}>NoteTakingApp</a>
-			</div>
-		</nav>
-	</div>
+  <div>
+    <Navbar className="Header white" brand={brandColor} fixed right />
+  </div>
 );
 
 export default NavBar;
