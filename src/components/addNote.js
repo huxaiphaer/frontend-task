@@ -1,18 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Modal, Button, Row, Input } from 'react-materialize';
 
-const AddNoteBtn = () => (
-	<div>
-		<a className="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-		<div id="modal1" className="modal">
-			<div className="modal-content">
-				<h4>Modal Header</h4>
-				<p>A bunch of text</p>
-			</div>
-			<div className="modal-footer">
-				<a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
-			</div>
-		</div>
-	</div>
+const AddNoteBtn = ({ handleSubmit, obj, handleChange }) => (
+  <div>
+    <Modal
+      header="Add a Note"
+      trigger={<Button floating large className="red" icon="add" />}
+    >
+      <form onSubmit={handleSubmit}>
+        <Row>
+          <Input label="Title" s={12} value={obj.title} name="title" onChange={handleChange} />
+          <Input label="Body" s={12} value={obj.body} name="body" onChange={handleChange} />
+          <Button waves="light" s={12}>Create a Note</Button>
+        </Row>
+      </form>
+    </Modal>
+  </div>
 );
+
+AddNoteBtn.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default AddNoteBtn;
