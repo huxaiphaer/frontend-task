@@ -16,8 +16,8 @@ class App extends Component {
       title: '',
       body: '',
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.onHandleSubmit = this.onHandleSubmit.bind(this);
+    this.onHandleChange = this.onHandleChange.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +25,44 @@ class App extends Component {
     console.log('current data', data);
     this.setState({ notesArray: data });
   }
-    handleSubmit=(event) => {
+
+    onRemoveNote = (id) => {
+      this.setState((state) => {
+        const listNotes = state.notesArray.filter(note => note.id !== id);
+        localStorage.setItem('items', JSON.stringify(listNotes));
+        window.location.reload();
+
+        return {
+          listNotes,
+          title: '',
+          body: '',
+        };
+      });
+    };
+
+    onEditNote =(id) => {
+      this.setState((state) => {
+        // const listNotes = state.notesArray.filter(note => note.id !== id);
+        const list = state.notesArray.map((item, j) => {
+          console.log(' title-> ', item.title);
+
+          if (j === id) {
+            item.title = 'Bad day man';
+            item.body = 'Why ? ';
+          }
+          return item;
+        });
+
+        localStorage.setItem('items', JSON.stringify(list));
+
+
+        return {
+          list,
+        };
+      });
+    }
+
+    onHandleSubmit=(event) => {
       event.preventDefault();
 
       const obj = {
@@ -40,7 +77,7 @@ class App extends Component {
         localStorage.setItem('items', JSON.stringify(notesArray));
         return {
           notesArray,
-          id: Math.random(),
+          id: Math.floor(Math.random() * 500),
           title: '',
           body: '',
         };
@@ -48,7 +85,7 @@ class App extends Component {
       console.log('our state', this.state.notesArray);
     }
 
-    handleChange(evt) {
+    onHandleChange(evt) {
       this.setState({ [evt.target.name]: evt.target.value });
     }
 
@@ -63,8 +100,8 @@ class App extends Component {
           </div>
           <div>
             <AddNoteBtn
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
+              handleSubmit={this.onHandleSubmit}
+              handleChange={this.onHandleChange}
               obj={this.state}
             />
           </div>
@@ -72,6 +109,8 @@ class App extends Component {
             <div className="col s4">
               <SideBar
                 notesData={notesArray}
+                editNote={this.onEditNote}
+                onRemoveNote={this.onRemoveNote}
               />
             </div>
             <div className="col s7">
