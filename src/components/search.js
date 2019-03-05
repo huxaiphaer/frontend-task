@@ -1,13 +1,10 @@
 import React from 'react';
+import { Icon, Input } from 'react-materialize';
 
 const SearchView = () => (
-	<div>
-		<div className="input-field col s6">
-			<i className="material-icons prefix">search</i>
-			<input id="icon_prefix" type="text" className="validate" />
-			<label htmlFor="icon_prefix">Search</label>
-		</div>
-	</div>
+  <div>
+    <Input s={12} label="Search Notes" validate><Icon>search</Icon></Input>
+  </div>
 );
 
 export default SearchView;
