@@ -30,5 +30,6 @@ module.exports = Object.assign({}, configuration, {
     watchOptions: {
       ignored: /node_modules/
     }
-  }
+  },
+}
 });

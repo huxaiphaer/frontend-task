@@ -5,6 +5,7 @@ import { Modal, Button, Row, Input } from 'react-materialize';
 const AddNoteBtn = ({ handleSubmit, obj, handleChange }) => (
   <div>
     <Modal
+      id="addmodal"
       header="Add a Note"
       trigger={<Button floating large className="red" icon="add" />}
     >
@@ -12,7 +13,7 @@ const AddNoteBtn = ({ handleSubmit, obj, handleChange }) => (
         <Row>
           <Input label="Title" s={12} value={obj.title} name="title" onChange={handleChange} />
           <Input label="Body" s={12} value={obj.body} name="body" onChange={handleChange} />
-          <Button waves="light" s={12}>Create a Note</Button>
+          <Button waves="light" s={12} onClick={() => { $('#addmodal').modal('close'); }}>Create a Note</Button>
         </Row>
       </form>
     </Modal>
@@ -22,6 +23,7 @@ const AddNoteBtn = ({ handleSubmit, obj, handleChange }) => (
 AddNoteBtn.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  obj: PropTypes.arrayOf.isRequired,
 };
 
 export default AddNoteBtn;

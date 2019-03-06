@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Row, Input } from 'react-materialize';
 
-const EditeNote = ({ handleSubmit, obj, handleChange }) => (
+const EditNote = ({ handleSubmit, obj, handleChange }) => (
   <div>
     <Modal
       header="Edit a Note"
@@ -19,9 +19,11 @@ const EditeNote = ({ handleSubmit, obj, handleChange }) => (
   </div>
 );
 
-AddNoteBtn.propTypes = {
+EditNote.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  obj: PropTypes.arrayOf.isRequired,
+
 };
 
-export default EditeNote;
+export default EditNote;
