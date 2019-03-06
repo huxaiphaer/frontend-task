@@ -1,10 +1,13 @@
 import React from 'react';
-import '../styles/sidebar.scss';
+import PropTypes from 'prop-types';
+import styles from '../styles/navbar.css';
 
-const DisplayNote = () => (
-    <div className={'sidebar-size'}>
-        Hello
-    </div>
+const DisplayNote = ({ title }) => (
+  <div>
+
+    <p className={styles['align-navbar-title']}>body</p>
+  </div>
 );
+
 
 export default DisplayNote;

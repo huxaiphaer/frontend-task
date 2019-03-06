@@ -1,18 +1,19 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React, { Component } from 'react';
-
+import moment from 'moment';
 import NavBar from '../components/navBar';
 import SideBar from '../components/sideBar';
 import DisplayNote from '../components/displayNote';
 import SearchView from '../components/search';
 import AddNoteBtn from '../components/addNote';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       notesArray: [],
-      id: 0,
+      id: '',
       title: '',
       body: '',
       search: '',
@@ -23,15 +24,15 @@ class App extends Component {
 
   componentDidMount() {
     const data = JSON.parse(localStorage.getItem('items')) || [];
-    console.log('current data', data);
     this.setState({ notesArray: data });
   }
 
-    onRemoveNote = (id) => {
-      console.log('id ', id);
+    onRemoveNote = (event) => {
+      const { target: { value: id } } = event;
       this.setState((state) => {
-        const listNotes = state.notesArray.filter((item, j) => id !== j);
+        const listNotes = state.notesArray.filter(item => id !== item.id);
         localStorage.setItem('items', JSON.stringify(listNotes));
+        $('#deletemodal').modal('close');
         window.location.reload();
 
         return {
@@ -42,27 +43,37 @@ class App extends Component {
       });
     };
 
-    onEditNote =(id) => {
-      console.log('id->', id);
-      // this.setState((state) => {
-      //   // const listNotes = state.notesArray.filter(note => note.id !== id);
-      //   const list = state.notesArray.map((item, j) => {
-      //     console.log(' title-> ', item.title);
-      //
-      //     if (j === id) {
-      //       item.title = 'Bad day man';
-      //       item.body = 'Why ? ';
-      //     }
-      //     return item;
-      //   });
-      //
-      //   localStorage.setItem('items', JSON.stringify(list));
-      //
-      //
-      //   return {
-      //     list,
-      //   };
-      // });
+
+    onEditNote = (event) => {
+      const { target: { value: id } } = event;
+      const obj = {
+        title: this.state.title,
+        body: this.state.body,
+      };
+      this.setState((state) => {
+        const list = state.notesArray.map((item) => {
+          if (item.id === id) {
+            item.title = obj.title;
+            item.body = obj.body;
+          }
+          return item;
+        });
+
+        localStorage.setItem('items', JSON.stringify(list));
+
+        $('#editmodal').modal('close');
+        return {
+          list,
+          title: '',
+          body: '',
+
+        };
+      });
+    }
+
+    formatDateForDatabase =() => {
+      const date = new Date().getTime();
+      return moment(date).format('YYYYMMDDHHmmssSSS');
     }
 
     onHandleSubmit=(event) => {
@@ -71,21 +82,18 @@ class App extends Component {
       const obj = {
         title: this.state.title,
         body: this.state.body,
-        id: this.state.id,
+        id: this.formatDateForDatabase(),
       };
 
       this.setState((state) => {
         const notesArray = [...state.notesArray, obj];
-        console.log('mmmm', notesArray);
         localStorage.setItem('items', JSON.stringify(notesArray));
         return {
           notesArray,
-          id: Math.floor(Math.random() * 500),
           title: '',
           body: '',
         };
       });
-      console.log('our state', this.state.notesArray);
     }
 
     onHandleChange(evt) {
@@ -96,12 +104,23 @@ class App extends Component {
       this.setState({ search: e.target.value });
     }
 
+    openEditModalHandler = (id) => {
+      this.setState({ id });
+      $('#editmodal').modal('open');
+    };
+
+    openDeleteModalHandler = (id) => {
+      this.setState({ id });
+      $('#deletemodal').modal('open');
+    }
+
 
     render() {
-      const { notesArray, search } = this.state;
+      const {
+        notesArray, search, title, body, id,
+      } = this.state;
       const filteredNotes = notesArray.filter(note =>
         note.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
-
       return (
         <div>
           <NavBar />
@@ -121,10 +140,12 @@ class App extends Component {
             <div className="col s4">
               <SideBar
                 notesData={filteredNotes}
-                editNote={this.onEditNote}
+                onEditNote={this.onEditNote}
                 onRemoveNote={this.onRemoveNote}
+                openEditModalHandler={this.openEditModalHandler}
+                openDeleteModalHandler={this.openDeleteModalHandler}
                 search={search}
-                obj={this.state}
+                obj={{ title, body, id }}
                 handleChange={this.onHandleChange}
               />
             </div>
