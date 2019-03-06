@@ -15,6 +15,7 @@ class App extends Component {
       id: 0,
       title: '',
       body: '',
+      search: '',
     };
     this.onHandleSubmit = this.onHandleSubmit.bind(this);
     this.onHandleChange = this.onHandleChange.bind(this);
@@ -27,8 +28,9 @@ class App extends Component {
   }
 
     onRemoveNote = (id) => {
+      console.log('id ', id);
       this.setState((state) => {
-        const listNotes = state.notesArray.filter(note => note.id !== id);
+        const listNotes = state.notesArray.filter((item, j) => id !== j);
         localStorage.setItem('items', JSON.stringify(listNotes));
         window.location.reload();
 
@@ -41,25 +43,26 @@ class App extends Component {
     };
 
     onEditNote =(id) => {
-      this.setState((state) => {
-        // const listNotes = state.notesArray.filter(note => note.id !== id);
-        const list = state.notesArray.map((item, j) => {
-          console.log(' title-> ', item.title);
-
-          if (j === id) {
-            item.title = 'Bad day man';
-            item.body = 'Why ? ';
-          }
-          return item;
-        });
-
-        localStorage.setItem('items', JSON.stringify(list));
-
-
-        return {
-          list,
-        };
-      });
+      console.log('id->', id);
+      // this.setState((state) => {
+      //   // const listNotes = state.notesArray.filter(note => note.id !== id);
+      //   const list = state.notesArray.map((item, j) => {
+      //     console.log(' title-> ', item.title);
+      //
+      //     if (j === id) {
+      //       item.title = 'Bad day man';
+      //       item.body = 'Why ? ';
+      //     }
+      //     return item;
+      //   });
+      //
+      //   localStorage.setItem('items', JSON.stringify(list));
+      //
+      //
+      //   return {
+      //     list,
+      //   };
+      // });
     }
 
     onHandleSubmit=(event) => {
@@ -89,14 +92,23 @@ class App extends Component {
       this.setState({ [evt.target.name]: evt.target.value });
     }
 
+    onHandleChangeSearch = (e) => {
+      this.setState({ search: e.target.value });
+    }
+
 
     render() {
-      const { notesArray } = this.state;
+      const { notesArray, search } = this.state;
+      const filteredNotes = notesArray.filter(note =>
+        note.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
+
       return (
         <div>
           <NavBar />
           <div className="s1">
-            <SearchView />
+            <SearchView
+              handleChange={this.onHandleChangeSearch}
+            />
           </div>
           <div>
             <AddNoteBtn
@@ -108,9 +120,12 @@ class App extends Component {
           <div className="row center-align">
             <div className="col s4">
               <SideBar
-                notesData={notesArray}
+                notesData={filteredNotes}
                 editNote={this.onEditNote}
                 onRemoveNote={this.onRemoveNote}
+                search={search}
+                obj={this.state}
+                handleChange={this.onHandleChange}
               />
             </div>
             <div className="col s7">
