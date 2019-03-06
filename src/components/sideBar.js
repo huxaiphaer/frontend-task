@@ -1,11 +1,13 @@
 import React from 'react';
-import { Modal } from 'react-materialize';
+import { Button, Input, Modal, Row } from 'react-materialize';
 import PropTypes from 'prop-types';
 import '../styles/sidebar.scss';
 import DeleteComponent from './deleteComponent';
 
 
-const SideBar = ({ notesData, editNote, onRemoveNote }) => (
+const SideBar = ({
+  notesData, editNote, onRemoveNote, obj, handleChange,
+}) => (
   <div>
     <div className="sidebar-size "> <b>List of Notes </b></div>
     <ul className="collection">
@@ -15,16 +17,23 @@ const SideBar = ({ notesData, editNote, onRemoveNote }) => (
           <i className="material-icons circle">folder</i>
           <span className="title">{item.title}</span>
           <div className="secondary-content row">
-            <a className="material-icons col s1" onClick={() => { editNote(index); }}>
+            <a className="material-icons col s1" onClick={() => { $('#editmodal').modal('open'); }}>
               <i className="material-icons">edit</i>
             </a>
-            <a className="material-icons col s1" onClick={() => { $('#deletemodal').modal('open'); }}>
+            <a className="material-icons col s1" onClick={() => { onRemoveNote(index); }}>
               <i className="material-icons">delete</i>
             </a>
             <Modal
               id="editmodal"
-              header=""
-            />
+              header={index}
+            >
+              <Row>
+                <Input label="Title" s={12} value={obj.title} name="title" onChange={handleChange} />
+                <Input label="Body" s={12} value={obj.body} name="body" onChange={handleChange} />
+                <Button waves="light" s={12} onClick={() => { editNote(index); }}>Edit a Note</Button>
+              </Row>
+            </Modal>
+
             <Modal
               id="deletemodal"
               header=""
