@@ -1,0 +1,33 @@
+.list-title{
+    font-size: 15px;
+    margin-top: 20px;
+    font-weight: lighter;
+}
+
+.delete-icon{
+    color: #752d91;
+    margin-left: 22px;
+    margin-right: 22px;
+    cursor: pointer;
+
+}
+
+.edit-icon{
+    color: #752d91;
+    margin-left: 22px;
+    cursor: pointer;
+}
+
+.icon-folder{
+    width: 40%;
+    height: 40%;
+}
+
+.list{
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.header{
+    color: #56276f;
+}

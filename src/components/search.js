@@ -1,10 +1,11 @@
 import React from 'react';
 import { Icon, Input } from 'react-materialize';
 import PropTypes from 'prop-types';
+import styles from '../styles/search.css';
 
 const SearchView = ({ handleChange }) => (
-  <div>
-    <Input s={12} label="Search Notes" name="search" onChange={handleChange} validate><Icon>search</Icon></Input>
+  <div >
+    <Input label="Search Notes" name="search" className={styles['input-field']} onChange={handleChange} validate><Icon>search</Icon></Input>
   </div>
 );
 

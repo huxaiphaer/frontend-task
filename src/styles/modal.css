@@ -1,0 +1,28 @@
+.edit-and-add-modal-{
+    width: 40% !important;
+    height: auto;
+    max-height: 600px;
+    overflow-y: hidden !important;
+}
+
+.modal-button{
+    background-color: #56276f;
+}
+
+.delete-modal{
+    width: 40% !important;
+    height: auto;
+    overflow-y: hidden !important;
+}
+
+.delete-btn{
+    background-color: #a53134 !important;
+    text-decoration: none;
+
+}
+
+.cancel-btn{
+    background-color: #ffffff;
+    margin-left: 5px;
+    color:#000;
+}

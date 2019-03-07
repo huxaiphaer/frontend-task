@@ -1,0 +1,16 @@
+.search-box{
+    width: 30%;
+}
+
+.search-box-style{
+    color: #752d91;
+}
+
+.input-field textarea:focus + label {
+    color: #2196f3 !important;
+}
+
+.row .input-field textarea:focus {
+    border-bottom: 1px solid #2196f3 !important;
+    box-shadow: 0 1px 0 0 #2196f3 !important
+}
