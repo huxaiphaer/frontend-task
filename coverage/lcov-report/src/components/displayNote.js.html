@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>3/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
-        <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/1</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>3/3</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -72,17 +72,14 @@
 27
 28
 29
-30
-31
-32
-33
-34</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+30</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -95,6 +92,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -103,42 +101,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React from 'react';</span>
-<span class="cstat-no" title="statement not covered" >import { Card } from 'react-materialize';</span>
-<span class="cstat-no" title="statement not covered" >import styles from '../styles/navbar.css';</span>
-<span class="cstat-no" title="statement not covered" >import cardStyle from '../styles/displayNote.css';</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import PropTypes from 'prop-types';
+import { Card } from 'react-materialize';
+import cardStyle from '../styles/displayNote.css';
 &nbsp;
-const DisplayNote = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> obj, handleChange }) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >  &lt;div&gt;</span>
-      &lt;h5 className={cardStyle.header}&gt;Note&lt;/h5&gt;
-    &lt;Card className={cardStyle['card-style']}&gt;
-      &lt;p className={styles['body-text']}&gt;body bhvghcg yfytfytfyt yfyfytfyf
-          yfytyt fycy guyfyt yt yt yt yycycycycycycycy cy
-          huzamdnjfbdkbfhbdhfbhdhfbhjdbfdhbfhdbfhjdhf
-          afjdbfhjdbfjhdbhjfbjdbfhdfhdbfhjdbhjfbhjdbfhj]
-          sjfojfjkdhjfhdkjhfjkhdjkhfjkhdjkhfjkdhjfk
-          jkhdsjhfkjdhfkjhdkjhfkjhdjkfhkjdhjfkhjkdhf]djfj
-          sfjkdhfkjhdjkhfkjdhfjkhdjkhfkjhdfjhdjhfjdfhjdfh
-          dfjkdjfhkjdhjfhdjhfjhdjhfhdjfjdhjfhjdhfjdhfjdf
-          dkhfkjdhfjhdjhfjhdjfhjdhfjhdjhfjhdfhjhdfjhdjhfj
-          kjdfjkhjdhfkjhdjhfkjdhjfkdhj
-          ajj
-          aja
-          ajaja
 &nbsp;
-          abu
-      &lt;/p&gt;
-    &lt;/Card&gt;
-    {/* &lt;label className={styles['align-navbar-title']} value={obj.title} onChange={handleChange}&gt;{obj.title}&lt;/label&gt; */}
-    {/* &lt;label className={styles['align-navbar-title']} value={obj.body} onChange={handleChange}&gt;{obj.body}&lt;/label&gt; */}
+const DisplayNote = ({ body, handleChange, title }) =&gt; (
+  &lt;div&gt;
+    &lt;h5 className={cardStyle.header}&gt;Note&lt;/h5&gt;
+    { title !== '' ? (
+<span class="branch-0 cbranch-no" title="branch not covered" >      &lt;Card className={cardStyle['card-style']}&gt;</span>
+        &lt;p className={cardStyle['title-text']} value={title} onChange={handleChange}&gt;{title}&lt;/p&gt;
+        &lt;p className={cardStyle['body-text']} value={body} onChange={handleChange}&gt;{body}&lt;/p&gt;
+      &lt;/Card&gt;
+    )
+      : &lt;div className={cardStyle['no-selected-note']}&gt;&lt;i&gt;You haven&amp;apos;t selected any note.&lt;/i&gt;&lt;/div&gt;
+    }
   &lt;/div&gt;
 );
+&nbsp;
+DisplayNote.propTypes = {
+  body: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+&nbsp;
+};
 &nbsp;
 &nbsp;
 export default DisplayNote;
@@ -148,7 +136,7 @@ export default DisplayNote;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Mar 07 2019 16:50:48 GMT+0300 (EAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Mar 07 2019 23:57:12 GMT+0300 (EAT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.14% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/7</span>
+        <span class='fraction'>7/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
-        <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">40% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/5</span>
+        <span class='fraction'>5/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/6</span>
+        <span class='fraction'>6/6</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -114,10 +114,43 @@
 69
 70
 71
-72</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,22 +161,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,7 +190,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -198,28 +218,30 @@ const SideBar = ({
   handleChange, openEditModalHandler,
   openDeleteModalHandler,
   onDisplayAllNote,
+  titleError,
+  bodyError,
 }) =&gt; (
-  &lt;div&gt;
+  (&lt;div&gt;
     &lt;div className="sidebar-size "&gt; &lt;h5 className={styles.header}&gt;List of Notes &lt;/h5&gt;&lt;/div&gt;
-    &lt;ul className="collection"&gt;
-&nbsp;
+    { notesData.length !== 0 ? (&lt;ul className="collection"&gt;
       {notesData.map(note =&gt;
-        (&lt;li className={`collection-item avatar  ${styles.list}`} key={note.id} onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; { <span class="cstat-no" title="statement not covered" >onDisplayAllNote(note); </span>}}&gt;
+        (&lt;li className={`collection-item avatar  ${styles.list}`} key={note.id} onClick={() =&gt; { onDisplayAllNote(note); }}&gt;
           &lt;i className={`material-icons circle ${styles['icon-folder']}`}&gt;folder&lt;/i&gt;
           &lt;span className={styles['list-title']}&gt;{note.title}&lt;/span&gt;
           &lt;div className="secondary-content row"&gt;
             &lt;a
               className={styles['edit-icon']}
-              onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >openEditModalHandler(note.id)}</span>
+              onClick={() =&gt; openEditModalHandler(note.id, note)}
             &gt;
               &lt;i className="material-icons"&gt;edit&lt;/i&gt;
             &lt;/a&gt;
-            &lt;a className={styles['delete-icon']} onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; { <span class="cstat-no" title="statement not covered" >openDeleteModalHandler(note.id); </span>}}&gt;
+            &lt;a className={styles['delete-icon']} onClick={() =&gt; { openDeleteModalHandler(note.id); }}&gt;
               &lt;i className="material-icons"&gt;delete&lt;/i&gt;
             &lt;/a&gt;
           &lt;/div&gt;
         &lt;/li&gt;))}
-    &lt;/ul&gt;
+    &lt;/ul&gt;)
+      : <span class="branch-1 cbranch-no" title="branch not covered" >&lt;div&gt;&lt;i&gt;No notes available, please add one or more.&lt;/i&gt;&lt;/div&gt;}</span>
     &lt;Modal
       id="deletemodal"
       header=""
@@ -236,12 +258,18 @@ const SideBar = ({
       header="Edit a Note"
     &gt;
       &lt;Row&gt;
-        &lt;Input label="Title" s={12} value={obj.title} name="title" onChange={handleChange} /&gt;
-        &lt;Input label="Body" s={12} value={obj.body} name="body" onChange={handleChange} /&gt;
+        &lt;div&gt;
+          &lt;Input label="Title" s={12} value={obj.title} name="title" onChange={handleChange} /&gt;
+          &lt;div className={modalStyle['error-message-title-and-body']}&gt;{titleError}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;Input label="Body" type="textarea" className="active" s={12} value={obj.body} name="body" onChange={handleChange} /&gt;
+          &lt;div className={modalStyle['error-message-title-and-body']}&gt;{bodyError}&lt;/div&gt;
+        &lt;/div&gt;
         &lt;Button waves="light" s={12} value={obj.id} className={modalStyle['modal-button']} onClick={onEditNote}&gt;Edit a Note&lt;/Button&gt;
       &lt;/Row&gt;
     &lt;/Modal&gt;
-  &lt;/div&gt;
+  &lt;/div&gt;)
 );
 &nbsp;
 SideBar.propTypes = {
@@ -253,6 +281,8 @@ SideBar.propTypes = {
   openDeleteModalHandler: PropTypes.func.isRequired,
   onDisplayAllNote: PropTypes.func.isRequired,
   obj: PropTypes.func.isRequired,
+  titleError: PropTypes.string.isRequired,
+  bodyError: PropTypes.string.isRequired,
 };
 &nbsp;
 export default SideBar;
@@ -262,7 +292,7 @@ export default SideBar;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Mar 07 2019 16:50:48 GMT+0300 (EAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Mar 07 2019 23:57:12 GMT+0300 (EAT)
 </div>
 </div>
 <script src="../../prettify.js"></script>
