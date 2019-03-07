@@ -16,8 +16,7 @@ const SideBar = ({
 }) => (
   (<div>
     <div className="sidebar-size "> <h5 className={styles.header}>List of Notes </h5></div>
-    <ul className="collection">
-
+    { notesData.length !== 0 ? (<ul className="collection">
       {notesData.map(note =>
         (<li className={`collection-item avatar  ${styles.list}`} key={note.id} onClick={() => { onDisplayAllNote(note); }}>
           <i className={`material-icons circle ${styles['icon-folder']}`}>folder</i>
@@ -34,7 +33,8 @@ const SideBar = ({
             </a>
           </div>
         </li>))}
-    </ul>
+    </ul>)
+      : <div><i>No notes available, please add one or more.</i></div>}
     <Modal
       id="deletemodal"
       header=""
