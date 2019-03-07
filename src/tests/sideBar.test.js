@@ -3,8 +3,9 @@ import React from 'react';
 import SideBar from '../components/sideBar';
 
 describe('sideBar component', () => {
+  let wrapper;
   it('should render sideBar component', () => {
-    shallow(<SideBar
+    wrapper = shallow(<SideBar
       notesData={[{}]}
       onRemoveNote={jest.fn()}
       obj={jest.fn()}
@@ -14,5 +15,9 @@ describe('sideBar component', () => {
       handleChange={jest.fn()}
       onEditNote={jest.fn()}
     />);
+
+    wrapper.find('li').at(0).simulate('click');
+    wrapper.find('a').at(0).simulate('click');
+    wrapper.find('a').at(1).simulate('click');
   });
 });

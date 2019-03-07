@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/4</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/4</span>
+        <span class='fraction'>3/3</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -75,14 +75,36 @@
 30
 31
 32
-33</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -93,14 +115,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,7 +145,13 @@ import { Modal, Button, Row, Input } from 'react-materialize';
 import styles from '../styles/addButton.css';
 import modalStyles from '../styles/modal.css';
 &nbsp;
-const AddNoteBtn = ({ handleSubmit, obj, handleChange }) =&gt; (
+const AddNoteBtn = ({
+  handleSubmit,
+  obj,
+  handleChange,
+  titleError,
+  bodyError,
+}) =&gt; (
   &lt;div&gt;
     &lt;Modal
       id="addmodal"
@@ -123,9 +161,17 @@ const AddNoteBtn = ({ handleSubmit, obj, handleChange }) =&gt; (
     &gt;
       &lt;form onSubmit={handleSubmit}&gt;
         &lt;Row&gt;
-          &lt;Input label="Title" s={12} value={obj.title} name="title" onChange={handleChange} /&gt;
-          &lt;Input label="Body" s={12} value={obj.body} name="body" onChange={handleChange} /&gt;
-          &lt;Button waves="light" s={12} className={modalStyles['modal-button']} onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; { <span class="cstat-no" title="statement not covered" >$('#addmodal').modal('close'); </span>}}&gt;Create a Note&lt;/Button&gt;
+          &lt;div&gt;
+            &lt;Input label="Title" s={12} value={obj.title} name="title" onChange={handleChange} /&gt;
+            &lt;div className={modalStyles['error-message-title-and-body']}&gt;{titleError}&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;Input label="Body" type="textarea" s={12} value={obj.body} name="body" onChange={handleChange} /&gt;
+            &lt;div className={modalStyles['error-message-title-and-body']} name={bodyError}&gt;{bodyError}&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;Button waves="light" s={12} className={modalStyles['modal-button']}&gt;Create a Note&lt;/Button&gt;
+          &lt;/div&gt;
         &lt;/Row&gt;
       &lt;/form&gt;
     &lt;/Modal&gt;
@@ -136,6 +182,8 @@ AddNoteBtn.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   obj: PropTypes.func.isRequired,
+  titleError: PropTypes.string.isRequired,
+  bodyError: PropTypes.string.isRequired,
 };
 &nbsp;
 export default AddNoteBtn;
@@ -145,7 +193,7 @@ export default AddNoteBtn;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Mar 07 2019 16:50:48 GMT+0300 (EAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Mar 07 2019 23:57:12 GMT+0300 (EAT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

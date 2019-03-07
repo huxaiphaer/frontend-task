@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card } from 'react-materialize';
 import cardStyle from '../styles/displayNote.css';
+
 
 const DisplayNote = ({ body, handleChange, title }) => (
   <div>
@@ -15,6 +17,13 @@ const DisplayNote = ({ body, handleChange, title }) => (
     }
   </div>
 );
+
+DisplayNote.propTypes = {
+  body: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+
+};
 
 
 export default DisplayNote;

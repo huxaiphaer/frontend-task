@@ -70,6 +70,7 @@
       "!/build",
       "!.idea/",
       "!/node_modules/",
+      "!src/index.js",
       "!src/utils/loader.js"
     ]
   }
