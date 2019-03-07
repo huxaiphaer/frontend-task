@@ -48,8 +48,10 @@ class App extends Component {
       });
     };
 
-  onDisplayAllNote =() => {
-
+  onDisplayAllNote =(note) => {
+    console.log('data->', note);
+    this.setState({ titleDisplay: note.title, bodyDisplay: note.body});
+    console.log('all state', this.state);
   }
 
     onEditNote = (event) => {
@@ -164,19 +166,20 @@ class App extends Component {
                 </div>
                 <div className="col s7">
                   <DisplayNote
-                    obj={{ titleDisplay, bodyDisplay }}
+                    title={titleDisplay}
+                    body={bodyDisplay}
                     handleChange={this.onHandleChange}
                     onDisplayAllNote={this.onDisplayAllNote}
                   />
                 </div>
               </div>
-              <div>
-                <AddNoteBtn
-                  handleSubmit={this.onHandleSubmit}
-                  handleChange={this.onHandleChange}
-                  obj={this.state}
-                />
-              </div>
+            </div>
+            <div>
+              <AddNoteBtn
+                handleSubmit={this.onHandleSubmit}
+                handleChange={this.onHandleChange}
+                obj={this.state}
+              />
             </div>
           </div>
         </div>
