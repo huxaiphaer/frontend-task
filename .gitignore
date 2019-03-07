@@ -3,5 +3,8 @@ build
 dist
 .DS_Store
 *.log
+.idea
 .idea/
 .env
+coverage
+coverage/
