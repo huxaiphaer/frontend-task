@@ -6,6 +6,9 @@ import SideBar from '../components/sideBar';
 import DisplayNote from '../components/displayNote';
 import SearchView from '../components/search';
 import AddNoteBtn from '../components/addNote';
+import styles from '../styles/search.css';
+import align from '../styles/alignAllComponents.css';
+import landingPage from '../styles/landingPage.css';
 
 
 class App extends Component {
@@ -17,6 +20,8 @@ class App extends Component {
       title: '',
       body: '',
       search: '',
+      titleDisplay: '',
+      bodyDisplay: '',
     };
     this.onHandleSubmit = this.onHandleSubmit.bind(this);
     this.onHandleChange = this.onHandleChange.bind(this);
@@ -43,6 +48,9 @@ class App extends Component {
       });
     };
 
+  onDisplayAllNote =() => {
+
+  }
 
     onEditNote = (event) => {
       const { target: { value: id } } = event;
@@ -69,11 +77,6 @@ class App extends Component {
 
         };
       });
-    }
-
-    formatDateForDatabase =() => {
-      const date = new Date().getTime();
-      return moment(date).format('YYYYMMDDHHmmssSSS');
     }
 
     onHandleSubmit=(event) => {
@@ -104,6 +107,11 @@ class App extends Component {
       this.setState({ search: e.target.value });
     }
 
+    formatDateForDatabase =() => {
+      const date = new Date().getTime();
+      return moment(date).format('YYYYMMDDHHmmssSSS');
+    }
+
     openEditModalHandler = (id) => {
       this.setState({ id });
       $('#editmodal').modal('open');
@@ -117,40 +125,58 @@ class App extends Component {
 
     render() {
       const {
-        notesArray, search, title, body, id,
+        notesArray,
+        search,
+        title,
+        body,
+        id,
+        titleDisplay,
+        bodyDisplay,
       } = this.state;
+
+      console.log('D title', titleDisplay);
+
       const filteredNotes = notesArray.filter(note =>
         note.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
       return (
         <div>
-          <NavBar />
-          <div className="s1">
-            <SearchView
-              handleChange={this.onHandleChangeSearch}
-            />
-          </div>
-          <div>
-            <AddNoteBtn
-              handleSubmit={this.onHandleSubmit}
-              handleChange={this.onHandleChange}
-              obj={this.state}
-            />
-          </div>
-          <div className="row center-align">
-            <div className="col s4">
-              <SideBar
-                notesData={filteredNotes}
-                onEditNote={this.onEditNote}
-                onRemoveNote={this.onRemoveNote}
-                openEditModalHandler={this.openEditModalHandler}
-                openDeleteModalHandler={this.openDeleteModalHandler}
-                search={search}
-                obj={{ title, body, id }}
-                handleChange={this.onHandleChange}
-              />
-            </div>
-            <div className="col s7">
-              <DisplayNote />
+          <div className={landingPage['bg-image']}>
+            <NavBar />
+            <div className={align['align-components']}>
+              <div className={styles['search-box']}>
+                <SearchView
+                  handleChange={this.onHandleChangeSearch}
+                />
+              </div>
+              <div className="row center-align">
+                <div className="col s4">
+                  <SideBar
+                    notesData={filteredNotes}
+                    onEditNote={this.onEditNote}
+                    onRemoveNote={this.onRemoveNote}
+                    openEditModalHandler={this.openEditModalHandler}
+                    openDeleteModalHandler={this.openDeleteModalHandler}
+                    search={search}
+                    obj={{ title, body, id }}
+                    handleChange={this.onHandleChange}
+                    onDisplayAllNote={this.onDisplayAllNote}
+                  />
+                </div>
+                <div className="col s7">
+                  <DisplayNote
+                    obj={{ titleDisplay, bodyDisplay }}
+                    handleChange={this.onHandleChange}
+                    onDisplayAllNote={this.onDisplayAllNote}
+                  />
+                </div>
+              </div>
+              <div>
+                <AddNoteBtn
+                  handleSubmit={this.onHandleSubmit}
+                  handleChange={this.onHandleChange}
+                  obj={this.state}
+                />
+              </div>
             </div>
           </div>
         </div>
