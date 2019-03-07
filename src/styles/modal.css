@@ -23,6 +23,13 @@
 
 .cancel-btn{
     background-color: #ffffff;
-    margin-left: 5px;
+    margin-left: 15px;
     color:#000;
+}
+
+.error-message-title-and-body{
+    color: red;
+    font-size: 10px;
+    margin-left: 6px;
+    margin-bottom: 5px;
 }

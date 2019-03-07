@@ -8,7 +8,6 @@ import SearchView from '../components/search';
 import AddNoteBtn from '../components/addNote';
 import styles from '../styles/search.css';
 import align from '../styles/alignAllComponents.css';
-import landingPage from '../styles/landingPage.css';
 
 
 class App extends Component {
@@ -22,6 +21,8 @@ class App extends Component {
       search: '',
       titleDisplay: '',
       bodyDisplay: '',
+      titleError: '',
+      bodyError: '',
     };
     this.onHandleSubmit = this.onHandleSubmit.bind(this);
     this.onHandleChange = this.onHandleChange.bind(this);
@@ -49,9 +50,7 @@ class App extends Component {
     };
 
   onDisplayAllNote =(note) => {
-    console.log('data->', note);
-    this.setState({ titleDisplay: note.title, bodyDisplay: note.body});
-    console.log('all state', this.state);
+    this.setState({ titleDisplay: note.title, bodyDisplay: note.body });
   }
 
     onEditNote = (event) => {
@@ -60,29 +59,45 @@ class App extends Component {
         title: this.state.title,
         body: this.state.body,
       };
-      this.setState((state) => {
-        const list = state.notesArray.map((item) => {
-          if (item.id === id) {
-            item.title = obj.title;
-            item.body = obj.body;
-          }
-          return item;
+
+      // clear the errors while submitting
+
+      this.setState({ titleError: '', bodyError: '' });
+
+      if (obj.title === '') {
+        this.setState({ titleError: 'Title empty, please add title' });
+      } else if (obj.body === '') {
+        this.setState({ bodyError: 'Body empty, please add body' });
+      } else {
+        this.setState((state) => {
+          const list = state.notesArray.map((item) => {
+            if (item.id === id) {
+              item.title = obj.title;
+              item.body = obj.body;
+            }
+            return item;
+          });
+
+          localStorage.setItem('items', JSON.stringify(list));
+
+          $('#editmodal')
+            .modal('close');
+          return {
+            list,
+            title: '',
+            body: '',
+
+          };
         });
-
-        localStorage.setItem('items', JSON.stringify(list));
-
-        $('#editmodal').modal('close');
-        return {
-          list,
-          title: '',
-          body: '',
-
-        };
-      });
+      }
     }
 
     onHandleSubmit=(event) => {
       event.preventDefault();
+
+      // clear the errors while submitting
+
+      this.setState({ titleError: '', bodyError: '' });
 
       const obj = {
         title: this.state.title,
@@ -90,15 +105,24 @@ class App extends Component {
         id: this.formatDateForDatabase(),
       };
 
-      this.setState((state) => {
-        const notesArray = [...state.notesArray, obj];
-        localStorage.setItem('items', JSON.stringify(notesArray));
-        return {
-          notesArray,
-          title: '',
-          body: '',
-        };
-      });
+      if (obj.title === '') {
+        this.setState({ titleError: 'Title empty, please add title' });
+      } else if (obj.body === '') {
+        this.setState({ bodyError: 'Body empty, please add body' });
+      } else {
+        this.setState((state) => {
+          const notesArray = [...state.notesArray, obj];
+          localStorage.setItem('items', JSON.stringify(notesArray));
+          return {
+            notesArray,
+            title: '',
+            body: '',
+            titleError: '',
+            bodyError: '',
+          };
+        });
+        $('#addmodal').modal('close');
+      }
     }
 
     onHandleChange(evt) {
@@ -114,8 +138,9 @@ class App extends Component {
       return moment(date).format('YYYYMMDDHHmmssSSS');
     }
 
-    openEditModalHandler = (id) => {
+    openEditModalHandler = (id, note) => {
       this.setState({ id });
+      this.setState({ title: note.title, body: note.body });
       $('#editmodal').modal('open');
     };
 
@@ -134,9 +159,9 @@ class App extends Component {
         id,
         titleDisplay,
         bodyDisplay,
+        titleError,
+        bodyError,
       } = this.state;
-
-      console.log('D title', titleDisplay);
 
       const filteredNotes = notesArray.filter(note =>
         note.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
@@ -159,6 +184,8 @@ class App extends Component {
                     openEditModalHandler={this.openEditModalHandler}
                     openDeleteModalHandler={this.openDeleteModalHandler}
                     search={search}
+                    titleError={titleError}
+                    bodyError={bodyError}
                     obj={{ title, body, id }}
                     handleChange={this.onHandleChange}
                     onDisplayAllNote={this.onDisplayAllNote}
@@ -176,6 +203,8 @@ class App extends Component {
             </div>
             <div>
               <AddNoteBtn
+                titleError={titleError}
+                bodyError={bodyError}
                 handleSubmit={this.onHandleSubmit}
                 handleChange={this.onHandleChange}
                 obj={this.state}
