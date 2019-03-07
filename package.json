@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adevait/take-home-task.git"
+    "url": "https://github.com/huxaiphaer/frontend-task.git"
   },
   "author": "Lutaaya Huzaifah Idris(lutaayahuzaifahidris@gmail.com)",
   "license": "ISC",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/adevait/take-home-task#readme",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "coveralls": "^3.0.3",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
