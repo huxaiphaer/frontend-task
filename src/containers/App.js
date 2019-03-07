@@ -140,7 +140,7 @@ class App extends Component {
         note.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
       return (
         <div>
-          <div className={landingPage['bg-image']}>
+          <div>
             <NavBar />
             <div className={align['align-components']}>
               <div className={styles['search-box']}>

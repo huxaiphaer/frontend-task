@@ -26,7 +26,7 @@ const AddNoteBtn = ({ handleSubmit, obj, handleChange }) => (
 AddNoteBtn.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  obj: PropTypes.arrayOf.isRequired,
+  obj: PropTypes.func.isRequired,
 };
 
 export default AddNoteBtn;

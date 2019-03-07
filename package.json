@@ -6,19 +6,20 @@
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --config ./config/webpack.config.development.js",
     "build": "rimraf dist && NODE_ENV=production webpack --config ./config/webpack.config.production.js",
-    "test": "jest"
+    "test": "react-scripts test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adevait/take-home-task.git"
   },
-  "author": "Solomon Ayoola (ayoola.solomon89@gmail.com)",
+  "author": "Lutaaya Huzaifah Idris(lutaayahuzaifahidris@gmail.com)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adevait/take-home-task/issues"
   },
   "homepage": "https://github.com/adevait/take-home-task#readme",
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
@@ -37,8 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
+    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-lodash": "^3.3.2",
     "babel-plugin-root-import": "^5.1.0",
@@ -46,8 +46,6 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.10",
     "eslint": "^4.18.2",
@@ -65,5 +63,14 @@
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!/build",
+      "!.idea/",
+      "!/node_modules/",
+      "!src/utils/loader.js"
+    ]
   }
 }

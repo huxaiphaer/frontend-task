@@ -2,8 +2,5 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './containers/App';
 
-
-ReactDOM.render(<App/>, document.getElementById('root'));
-// const rootElem = document.getElementById('root');
-// ReactDOM.render(<App />, rootElem);
+ReactDOM.render(<App />, document.getElementById('root'));
 

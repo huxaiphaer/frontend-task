@@ -13,7 +13,7 @@ const DeleteComponent = ({ onRemoveNote, obj }) => (
 
 DeleteComponent.propTypes = {
   onRemoveNote: PropTypes.func.isRequired,
-  obj: PropTypes.arrayOf.isRequired,
+  obj: PropTypes.func.isRequired,
 };
 
 export default DeleteComponent;
