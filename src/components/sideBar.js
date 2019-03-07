@@ -11,8 +11,10 @@ const SideBar = ({
   handleChange, openEditModalHandler,
   openDeleteModalHandler,
   onDisplayAllNote,
+  titleError,
+  bodyError,
 }) => (
-  <div>
+  (<div>
     <div className="sidebar-size "> <h5 className={styles.header}>List of Notes </h5></div>
     <ul className="collection">
 
@@ -23,7 +25,7 @@ const SideBar = ({
           <div className="secondary-content row">
             <a
               className={styles['edit-icon']}
-              onClick={() => openEditModalHandler(note.id)}
+              onClick={() => openEditModalHandler(note.id, note)}
             >
               <i className="material-icons">edit</i>
             </a>
@@ -49,12 +51,18 @@ const SideBar = ({
       header="Edit a Note"
     >
       <Row>
-        <Input label="Title" s={12} value={obj.title} name="title" onChange={handleChange} />
-        <Input label="Body" s={12} value={obj.body} name="body" onChange={handleChange} />
+        <div>
+          <Input label="Title" s={12} value={obj.title} name="title" onChange={handleChange} />
+          <div className={modalStyle['error-message-title-and-body']}>{titleError}</div>
+        </div>
+        <div>
+          <Input label="Body" type="textarea" className="active" s={12} value={obj.body} name="body" onChange={handleChange} />
+          <div className={modalStyle['error-message-title-and-body']}>{bodyError}</div>
+        </div>
         <Button waves="light" s={12} value={obj.id} className={modalStyle['modal-button']} onClick={onEditNote}>Edit a Note</Button>
       </Row>
     </Modal>
-  </div>
+  </div>)
 );
 
 SideBar.propTypes = {
@@ -66,6 +74,8 @@ SideBar.propTypes = {
   openDeleteModalHandler: PropTypes.func.isRequired,
   onDisplayAllNote: PropTypes.func.isRequired,
   obj: PropTypes.func.isRequired,
+  titleError: PropTypes.string.isRequired,
+  bodyError: PropTypes.string.isRequired,
 };
 
 export default SideBar;
