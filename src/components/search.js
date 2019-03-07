@@ -5,7 +5,9 @@ import styles from '../styles/search.css';
 
 const SearchView = ({ handleChange }) => (
   <div >
-    <Input label="Search Notes" name="search" className={styles['input-field']} onChange={handleChange} validate><Icon>search</Icon></Input>
+    <Input label="Search Notes" name="search" className={styles['input-field']} onChange={handleChange} validate>
+      <Icon>search</Icon>
+    </Input>
   </div>
 );
 

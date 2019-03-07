@@ -6,13 +6,13 @@
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --config ./config/webpack.config.development.js",
     "build": "rimraf dist && NODE_ENV=production webpack --config ./config/webpack.config.production.js",
-    "test": "jest"
+    "test": "react-scripts test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adevait/take-home-task.git"
   },
-  "author": "Solomon Ayoola (ayoola.solomon89@gmail.com)",
+  "author": "Lutaaya Huzaifah Idris(lutaayahuzaifahidris@gmail.com)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adevait/take-home-task/issues"
@@ -37,9 +37,8 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
-    "babel-loader": "^8.0.5",
+    "babel-core": "^6.26.3",
+    "babel-loader": "7",
     "babel-plugin-lodash": "^3.3.2",
     "babel-plugin-root-import": "^5.1.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -65,5 +64,14 @@
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!/build",
+      "!.idea/",
+      "!/node_modules/",
+      "!src/utils/loader.js"
+    ]
   }
 }

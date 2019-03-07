@@ -58,7 +58,7 @@ const SideBar = ({
 );
 
 SideBar.propTypes = {
-  notesData: PropTypes.arrayOf().isRequired,
+  notesData: PropTypes.arrayOf.isRequired,
   handleChange: PropTypes.func.isRequired,
   onEditNote: PropTypes.func.isRequired,
   onRemoveNote: PropTypes.func.isRequired,

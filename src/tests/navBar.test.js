@@ -1,9 +1,9 @@
 import { shallow } from 'enzyme/build';
 import React from 'react';
-import DisplayNote from '../components/displayNote';
+import NavBar from '../components/navBar';
 
-describe('display note component', () => {
-  it('should render display note component', () => {
-    shallow(<DisplayNote/>);
+describe('navbar component', () => {
+  it('should navbar component', () => {
+    shallow(<NavBar />);
   });
 });
