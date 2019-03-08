@@ -32,3 +32,32 @@
 .header{
     color: #56276f;
 }
+
+.align-edit-and-delete-icons{
+    margin-left: 700px;
+}
+
+@media screen and (max-width: 360px) {
+    .list{
+        float: none;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .list-title{
+        font-size: 15px;
+        margin-top: 20px;
+        font-weight: lighter;
+        right: 12px;
+    }
+
+    .edit-icon{
+        color: #752d91;
+        margin-left: 50px;
+        cursor: pointer;
+    }
+
+    .align-edit-and-delete-icons{
+        margin-left: 700px;
+    }
+}

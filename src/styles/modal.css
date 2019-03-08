@@ -16,9 +16,7 @@
 }
 
 .delete-btn{
-    background-color: #a53134 !important;
-    text-decoration: none;
-
+ width: 50%;
 }
 
 .cancel-btn{
@@ -32,4 +30,9 @@
     font-size: 10px;
     margin-left: 6px;
     margin-bottom: 5px;
+}
+
+
+.auto-height-modal{
+    height: auto;
 }
