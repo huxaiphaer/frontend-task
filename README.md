@@ -4,7 +4,7 @@
 
 # NoteTakingApp.
 
-The task is all about creating a Note taking web application.
+This a web application which is capable of creating notes without being on a network.
 
 #### Functionalities of the Application.
 
@@ -15,13 +15,13 @@ The task is all about creating a Note taking web application.
 
 ## Getting Started
 
-This is how you can make this project run on your machine.
+This is how you can make this project run on your local machine.
 
 ### Installation
 
-* You will need to have yarn, the best way to install yarn is by visiting this site. [Install Yarn](https://yarnpkg.com/lang/en/)
+* You will need to have yarn installed, the best way to install yarn is by visiting this site. [Install Yarn](https://yarnpkg.com/lang/en/)
 
-* Clone this repository by running the command:
+* Then, Clone this repository by running the command:
 
 ```
 git clone https://github.com/huxaiphaer/frontend-task
@@ -32,7 +32,7 @@ git clone https://github.com/huxaiphaer/frontend-task
 * Then install the project dependencies by running `yarn` & `yarn install`.
 
 * After that, you will need to create a `.env` in your root project then and include this line  `SKIP_PREFLIGHT_CHECK=true`. This
-enables your project to run tests.
+enables your project to run tests. Otherwise you will get an error of this kind ` Command failed with exit code 1.`
 
 #### Starting the app.
 
@@ -43,27 +43,30 @@ yarn start
 
 ```
 
-#### Testing.
+Then you will be routed to this link [Local link](http://localhost:8080/)
+
+#### Testing / Running tests.
 
 ```
 yarn test
 
 ```
 
-#### Running test with coverage.
+#### Running tests with coverage.
 
 ```
 yarn test -- --coverage
 
 ```
 
-## Languages & tools
+## Languages/Frameworks/Libraries & tools Used.
 
 * Reactjs.
+* ES6.
 * Code Climate.
 * Circle CI.
 * Local Storage.
 
-## Authors.
+## Author.
 
 * Lutaaya Huzaifah Idris.

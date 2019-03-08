@@ -1,6 +1,9 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React, { Component } from 'react';
 import moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { css } from 'glamor';
 import NavBar from '../components/navBar';
 import SideBar from '../components/sideBar';
 import DisplayNote from '../components/displayNote';
@@ -39,15 +42,16 @@ class App extends Component {
         const listNotes = state.notesArray.filter(item => id !== item.id);
         localStorage.setItem('items', JSON.stringify(listNotes));
         // eslint-disable-next-line no-undef
-        $('#deletemodal').modal('close');
-        window.location.reload();
-
+        this.setState({ notesArray: listNotes });
         return {
           listNotes,
           title: '',
           body: '',
         };
       });
+      this.onDeleteToast('Noted deleted successfully.');
+      // eslint-disable-next-line no-undef
+      $('#deleteModal').modal('close');
     };
 
   onDisplayAllNote =(note) => {
@@ -86,8 +90,8 @@ class App extends Component {
           localStorage.setItem('items', JSON.stringify(list));
 
           // eslint-disable-next-line no-undef
-          $('#editmodal')
-            .modal('close');
+          $('#editModal').modal('close');
+          this.onSuccessToast('Noted edited successfully.');
           return {
             list,
             title: '',
@@ -98,11 +102,28 @@ class App extends Component {
       }
     };
 
+    onSuccessToast=(message) => {
+      toast.success(message, {
+        className: css({
+          background: 'purple',
+        }),
+        bodyClassName: css({
+          fontSize: '13px',
+        }),
+        progressClassName: css({
+          background: 'repeating-radial-gradient(circle at center, white 0, blue, red 30px)',
+        }),
+      });
+    };
+
+    onDeleteToast=(message) => {
+      toast.error(message);
+    };
+
     onHandleSubmit=(event) => {
       event.preventDefault();
 
       // clear the errors while submitting
-
       this.setState({ titleError: '', bodyError: '' });
 
       const obj = {
@@ -129,8 +150,10 @@ class App extends Component {
             bodyError: '',
           };
         });
+
         // eslint-disable-next-line no-undef
         $('#addModal').modal('close');
+        this.onSuccessToast('Noted created successfully.');
       }
     };
 
@@ -181,6 +204,7 @@ class App extends Component {
         <div>
           <div>
             <NavBar />
+            <ToastContainer />
             <div className={align['align-components']}>
               <div className={styles['search-box']}>
                 <SearchView
