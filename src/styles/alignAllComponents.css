@@ -5,3 +5,10 @@
     margin-left: 15%;
     margin-right: auto;
 }
+
+@media screen and (width: 360px) {
+  .align-components{
+      height: 640px;
+      width: 360px;
+  }
+}

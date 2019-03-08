@@ -12,7 +12,7 @@ import align from '../styles/alignAllComponents.css';
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props, props, props);
     this.state = {
       notesArray: [],
       id: '',
@@ -38,6 +38,7 @@ class App extends Component {
       this.setState((state) => {
         const listNotes = state.notesArray.filter(item => id !== item.id);
         localStorage.setItem('items', JSON.stringify(listNotes));
+        // eslint-disable-next-line no-undef
         $('#deletemodal').modal('close');
         window.location.reload();
 
@@ -51,7 +52,7 @@ class App extends Component {
 
   onDisplayAllNote =(note) => {
     this.setState({ titleDisplay: note.title, bodyDisplay: note.body });
-  }
+  };
 
     onEditNote = (event) => {
       const { target: { value: id } } = event;
@@ -68,11 +69,15 @@ class App extends Component {
         this.setState({ titleError: 'Title empty, please add title' });
       } else if (obj.body === '') {
         this.setState({ bodyError: 'Body empty, please add body' });
+      } else if (obj.title.length > 20) {
+        this.setState({ titleError: 'Title is too long.' });
       } else {
         this.setState((state) => {
           const list = state.notesArray.map((item) => {
             if (item.id === id) {
+              // eslint-disable-next-line no-param-reassign
               item.title = obj.title;
+              // eslint-disable-next-line no-param-reassign
               item.body = obj.body;
             }
             return item;
@@ -80,6 +85,7 @@ class App extends Component {
 
           localStorage.setItem('items', JSON.stringify(list));
 
+          // eslint-disable-next-line no-undef
           $('#editmodal')
             .modal('close');
           return {
@@ -90,7 +96,7 @@ class App extends Component {
           };
         });
       }
-    }
+    };
 
     onHandleSubmit=(event) => {
       event.preventDefault();
@@ -109,6 +115,8 @@ class App extends Component {
         this.setState({ titleError: 'Title empty, please add title' });
       } else if (obj.body === '') {
         this.setState({ bodyError: 'Body empty, please add body' });
+      } else if (obj.title.length > 20) {
+        this.setState({ titleError: 'Title is too long' });
       } else {
         this.setState((state) => {
           const notesArray = [...state.notesArray, obj];
@@ -121,9 +129,10 @@ class App extends Component {
             bodyError: '',
           };
         });
-        $('#addmodal').modal('close');
+        // eslint-disable-next-line no-undef
+        $('#addModal').modal('close');
       }
-    }
+    };
 
     onHandleChange(evt) {
       this.setState({ [evt.target.name]: evt.target.value });
@@ -131,23 +140,25 @@ class App extends Component {
 
     onHandleChangeSearch = (e) => {
       this.setState({ search: e.target.value });
-    }
+    };
 
     formatDateForDatabase =() => {
       const date = new Date().getTime();
       return moment(date).format('YYYYMMDDHHmmssSSS');
-    }
+    };
 
     openEditModalHandler = (id, note) => {
       this.setState({ id });
       this.setState({ title: note.title, body: note.body });
-      $('#editmodal').modal('open');
+      // eslint-disable-next-line no-undef
+      $('#editModal').modal('open');
     };
 
     openDeleteModalHandler = (id) => {
       this.setState({ id });
-      $('#deletemodal').modal('open');
-    }
+      // eslint-disable-next-line no-undef
+      $('#deleteModal').modal('open');
+    };
 
 
     render() {
@@ -166,6 +177,7 @@ class App extends Component {
       const filteredNotes = notesArray.filter(note =>
         note.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
       return (
+      // eslint-disable-next-line react/jsx-filename-extension
         <div>
           <div>
             <NavBar />

@@ -39,6 +39,13 @@ describe('shallow render app dashboard', () => {
     wrapper.instance().onHandleSubmit({ preventDefault: jest.fn() });
   });
 
+  it('it should not create a Note with long title.', () => {
+    wrapper = shallow(<App />);
+    $.fn.modal = jest.fn();
+    wrapper.instance().setState({ title: 'hey huxy this is great, and am in for the next week.', body: 'This is really true ' });
+    wrapper.instance().onHandleSubmit({ preventDefault: jest.fn() });
+  });
+
   it('it should remove a Note.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
@@ -73,6 +80,13 @@ describe('shallow render app dashboard', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().setState({ title: '', body: 'hey huxy this is great.' });
+    wrapper.instance().onEditNote({ target: { value: 0 } });
+  });
+
+  it('it should not edit a Note with long title.', () => {
+    wrapper = shallow(<App />);
+    $.fn.modal = jest.fn();
+    wrapper.instance().setState({ title: 'hey huxy this is great, and am in for the next week.', body: 'This is really true ' });
     wrapper.instance().onEditNote({ target: { value: 0 } });
   });
 
