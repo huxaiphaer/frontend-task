@@ -24,8 +24,8 @@ const SideBar = ({
           className={`collection-item avatar  ${styles.list}`}
           key={note.id}
           onClick={() => {
-    onDisplayAllNote(note);
-  }}
+                             onDisplayAllNote(note);
+                         }}
         >
           <div>
             <i className={`material-icons circle ${styles['icon-folder']}`}>folder</i>
@@ -40,9 +40,6 @@ const SideBar = ({
             >
               <i className="material-icons">edit</i>
             </a>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-            {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
             <a
               className={styles['delete-icon']}
               onClick={() => {
@@ -56,7 +53,7 @@ const SideBar = ({
         </li>))}
       {/* eslint-disable-next-line react/jsx-closing-tag-location */}
     </ul>)
-      : <div><i>No notes available, please add one or more.</i></div>}
+      : <div><i>No notes available.</i></div>}
     <Modal
       id="deleteModal"
       header=""
@@ -75,6 +72,7 @@ const SideBar = ({
       <Row>
         <div className={modalStyle['auto-height-modal']}>
           <div className=" col s12">
+            {/* eslint-disable-next-line jsx-a11y/label-has-for */}
             <label>Title</label>
             <input value={obj.title} id="title" name="title" type="text" onError={titleError} onChange={handleChange} />
           </div>
@@ -82,8 +80,9 @@ const SideBar = ({
         </div>
         <div>
           <div className="col s12">
+            {/*  eslint-disable-next-line jsx-a11y/label-has-for */}
             <label className="active">Body</label>
-            <textarea value={obj.body} id="body" name="body" type="text" onError={bodyError} className="materialize-textarea" onChange={handleChange} />
+            <textarea value={obj.body} id="body" name="body" onError={bodyError} className="materialize-textarea" onChange={handleChange} />
             {/* eslint-disable-next-line jsx-a11y/label-has-for */}
           </div>
           <div className={modalStyle['error-message-title-and-body']}>{bodyError}</div>
