@@ -74,18 +74,17 @@ const SideBar = ({
     >
       <Row>
         <div className={modalStyle['auto-height-modal']}>
-          <div className="input-field col s12">
+          <div className=" col s12">
+            <label>Title</label>
             <input value={obj.title} id="title" name="title" type="text" onError={titleError} onChange={handleChange} />
-            {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-            <label className="active" htmlFor="title">Title</label>
           </div>
           <div className={modalStyle['error-message-title-and-body']}>{titleError}</div>
         </div>
         <div>
-          <div className="input-field col s12">
+          <div className="col s12">
+            <label className="active">Body</label>
             <textarea value={obj.body} id="body" name="body" type="text" onError={bodyError} className="materialize-textarea" onChange={handleChange} />
             {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-            <label className="active" htmlFor="title">Body</label>
           </div>
           <div className={modalStyle['error-message-title-and-body']}>{bodyError}</div>
         </div>

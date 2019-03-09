@@ -5,6 +5,7 @@ import SideBar from '../components/sideBar';
 describe('sideBar component', () => {
   let wrapper;
   it('should render sideBar component', () => {
+    // eslint-disable-next-line react/jsx-filename-extension
     wrapper = shallow(<SideBar
       notesData={[{}]}
       onRemoveNote={jest.fn()}

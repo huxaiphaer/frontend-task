@@ -4,6 +4,7 @@ import AddNoteBtn from '../components/addNote';
 
 describe('add button component', () => {
   it('should render add component', () => {
+    // eslint-disable-next-line react/jsx-filename-extension
     shallow(<AddNoteBtn
       handleSubmit={jest.fn()}
       obj={jest.fn()}

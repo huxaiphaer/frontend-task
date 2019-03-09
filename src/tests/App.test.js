@@ -1,16 +1,17 @@
 import React from 'react';
-import App from '../containers/App';
+import { shallow } from 'enzyme';
 import $ from 'jquery';
-import { mount, shallow } from 'enzyme';
+import App from '../containers/App';
 
 describe('shallow render app dashboard', () => {
   let wrapper;
 
   beforeEach(() => {
+    // eslint-disable-next-line react/jsx-filename-extension
     wrapper = shallow(<App />);
   });
 
-  it('it should handle Change for search view.', () => {
+  it('should handle Change for search view.', () => {
     wrapper = shallow(<App />);
     wrapper.instance().setState({ title: 'Huxy', body: 'hey' });
     wrapper.instance().onHandleChangeSearch({
@@ -18,85 +19,94 @@ describe('shallow render app dashboard', () => {
     });
   });
 
-  it('it should create a Note.', () => {
+  it('should create a Note.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().setState({ title: 'huxy', body: 'hey huxy this is great.' });
     wrapper.instance().onHandleSubmit({ preventDefault: jest.fn() });
   });
 
-  it('it should not create a Note without body.', () => {
+  it('should not create a Note without body.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().setState({ title: 'huxy', body: '' });
     wrapper.instance().onHandleSubmit({ preventDefault: jest.fn() });
   });
 
-  it('it should not create a Note without title.', () => {
+  it('should not create a Note without title.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().setState({ title: '', body: 'hey huxy this is great.' });
     wrapper.instance().onHandleSubmit({ preventDefault: jest.fn() });
   });
 
-  it('it should not create a Note with long title.', () => {
+  it('should not create a Note with long title.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().setState({ title: 'hey huxy this is great, and am in for the next week.', body: 'This is really true ' });
     wrapper.instance().onHandleSubmit({ preventDefault: jest.fn() });
   });
 
-  it('it should remove a Note.', () => {
+  it('should remove a Note.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().onRemoveNote({ target: { value: 0 } });
     wrapper.instance().setState({ body: '' });
   });
 
-  it('it should edit a Note.', () => {
+  it('should edit a Note.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
-    const obj = {
-      title: 'hey there',
-      body: 'This is fantastic',
-    };
+    wrapper.instance().onEditNote({ target: { value: '0' } });
+
     wrapper.instance().setState({
       title: 'huxy',
       body: 'hey huxy this is great.',
-      notesArray: [{ title: 'hey', body: 'its good', id: '01' }],
+      notesArray: [{ title: 'hey', body: 'its good', id: '0' }],
     });
-    wrapper.instance().setState({ title: obj.title, body: obj.body });
+
+    wrapper.instance().setState((state) => {
+      state.notesArray.map((item) => {
+        if (item.id === '0') {
+          // eslint-disable-next-line no-param-reassign
+          item.title = state.title;
+          // eslint-disable-next-line no-param-reassign
+          item.body = state.body;
+        }
+        return item;
+      });
+    });
     wrapper.instance().onEditNote({ target: { value: 0 } });
   });
 
-  it('it should not  edit a Note with no body', () => {
+  it('should not  edit a Note with no body', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().setState({ title: 'huxy', body: '' });
     wrapper.instance().onEditNote({ target: { value: 0 } });
   });
 
-  it('it should not  edit a Note with no title', () => {
+  it('should not  edit a Note with no title', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().setState({ title: '', body: 'hey huxy this is great.' });
     wrapper.instance().onEditNote({ target: { value: 0 } });
   });
 
-  it('it should not edit a Note with long title.', () => {
+  it('should not edit a Note with long title.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().setState({ title: 'hey huxy this is great, and am in for the next week.', body: 'This is really true ' });
     wrapper.instance().onEditNote({ target: { value: 0 } });
   });
 
-  it('it should not create a Note when body is missing.', () => {
+  it('should not create a Note when body is missing.', () => {
     wrapper = shallow(<App />);
     wrapper.instance().setState({ body: '' });
     wrapper.instance().onHandleSubmit({ preventDefault: jest.fn() });
   });
 
-  it('it should handle Change.', () => {
+  it('should handle Change.', () => {
     wrapper = shallow(<App />);
     wrapper.instance().onHandleChange({
       target: {
@@ -106,19 +116,19 @@ describe('shallow render app dashboard', () => {
     });
   });
 
-  it('it should open the delete modal.', () => {
+  it('should open the delete modal.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().openDeleteModalHandler(0);
   });
 
-  it('it should open the edit modal.', () => {
+  it('should open the edit modal.', () => {
     wrapper = shallow(<App />);
     $.fn.modal = jest.fn();
     wrapper.instance().openEditModalHandler(0, {});
   });
 
-  it('it should display all contents of a single  modal.', () => {
+  it('should display all contents of a single  modal.', () => {
     wrapper = shallow(<App />);
     wrapper.instance().onDisplayAllNote({});
   });
