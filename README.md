@@ -64,6 +64,7 @@ yarn test -- --coverage
 * Reactjs.
 * ES6.
 * Code Climate.
+* Materialize css & React Materialize
 * Circle CI.
 * Local Storage.
 
