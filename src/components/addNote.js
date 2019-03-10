@@ -43,7 +43,8 @@ const AddNoteBtn = ({
 AddNoteBtn.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  obj: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  obj: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   titleError: PropTypes.string.isRequired,
   bodyError: PropTypes.string.isRequired,
 };

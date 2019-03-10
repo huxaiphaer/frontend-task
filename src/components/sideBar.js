@@ -74,7 +74,7 @@ const SideBar = ({
           <div className=" col s12">
             {/* eslint-disable-next-line jsx-a11y/label-has-for */}
             <label>Title</label>
-            <input value={obj.title} id="title" name="title" type="text" onError={titleError} onChange={handleChange} />
+            <input value={obj.title} id="title" name="title" type="text" onChange={handleChange} />
           </div>
           <div className={modalStyle['error-message-title-and-body']}>{titleError}</div>
         </div>
@@ -82,7 +82,7 @@ const SideBar = ({
           <div className="col s12">
             {/*  eslint-disable-next-line jsx-a11y/label-has-for */}
             <label className="active">Body</label>
-            <textarea value={obj.body} id="body" name="body" onError={bodyError} className="materialize-textarea" onChange={handleChange} />
+            <textarea value={obj.body} id="body" name="body" className="materialize-textarea" onChange={handleChange} />
             {/* eslint-disable-next-line jsx-a11y/label-has-for */}
           </div>
           <div className={modalStyle['error-message-title-and-body']}>{bodyError}</div>
@@ -95,14 +95,15 @@ const SideBar = ({
 );
 
 SideBar.propTypes = {
-  notesData: PropTypes.func.isRequired,
+  notesData: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleChange: PropTypes.func.isRequired,
   onEditNote: PropTypes.func.isRequired,
   onRemoveNote: PropTypes.func.isRequired,
   openEditModalHandler: PropTypes.func.isRequired,
   openDeleteModalHandler: PropTypes.func.isRequired,
   onDisplayAllNote: PropTypes.func.isRequired,
-  obj: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  obj: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   titleError: PropTypes.string.isRequired,
   bodyError: PropTypes.string.isRequired,
 };
