@@ -9,14 +9,16 @@ describe('sideBar component', () => {
     wrapper = shallow(<SideBar
       notesData={[{}]}
       onRemoveNote={jest.fn()}
-      obj={jest.fn()}
+      obj=""
       openEditModalHandler={jest.fn()}
       onDisplayAllNote={jest.fn()}
       openDeleteModalHandler={jest.fn()}
       handleChange={jest.fn()}
       onEditNote={jest.fn()}
+      titleError=""
+      bodyError=""
     />);
-
+    wrapper.find('ul').at(0).key();
     wrapper.find('li').at(0).simulate('click');
     wrapper.find('a').at(0).simulate('click');
     wrapper.find('a').at(1).simulate('click');

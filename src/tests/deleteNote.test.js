@@ -9,7 +9,7 @@ describe('delete component', () => {
   it('should render delete component', () => {
     // eslint-disable-next-line react/jsx-filename-extension
     wrapper = shallow(<DeleteComponent
-      obj={jest.fn()}
+      obj=""
       onRemoveNote={jest.fn()}
     />);
     $.fn.modal = jest.fn();
