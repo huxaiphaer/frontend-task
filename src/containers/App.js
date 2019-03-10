@@ -49,7 +49,7 @@ class App extends Component {
           body: '',
         };
       });
-      this.onDeleteToast('Noted deleted successfully.');
+      this.onDeleteToast('Note deleted successfully.');
       // eslint-disable-next-line no-undef
       $('#deleteModal').modal('close');
     };
@@ -91,7 +91,7 @@ class App extends Component {
 
           // eslint-disable-next-line no-undef
           $('#editModal').modal('close');
-          this.onSuccessToast('Noted edited successfully.');
+          this.onSuccessToast('Note edited successfully.');
           return {
             list,
             title: '',
@@ -153,7 +153,7 @@ class App extends Component {
 
         // eslint-disable-next-line no-undef
         $('#addModal').modal('close');
-        this.onSuccessToast('Noted created successfully.');
+        this.onSuccessToast('Note created successfully.');
       }
     };
 
