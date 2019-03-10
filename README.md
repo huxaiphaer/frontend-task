@@ -31,7 +31,7 @@ git clone https://github.com/huxaiphaer/frontend-task
 
 * Then install the project dependencies by running `yarn` & `yarn install`.
 
-* After that, you will need to create a `.env` in your root project then and include this line  `SKIP_PREFLIGHT_CHECK=true`. This
+* After that, you will need to create a `.env` file in your root project then and include this line  `SKIP_PREFLIGHT_CHECK=true`. This
 enables your project to run tests. Otherwise you will get an error of this kind ` Command failed with exit code 1.`
 
 #### Starting the app.

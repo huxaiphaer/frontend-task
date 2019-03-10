@@ -7,7 +7,9 @@ describe('add button component', () => {
     // eslint-disable-next-line react/jsx-filename-extension
     shallow(<AddNoteBtn
       handleSubmit={jest.fn()}
-      obj={jest.fn()}
+      obj=""
+      titleError=""
+      bodyError=""
       handleChange={jest.fn()}
     />);
   });

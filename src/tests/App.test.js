@@ -60,8 +60,8 @@ describe('shallow render app dashboard', () => {
     wrapper.instance().onEditNote({ target: { value: '0' } });
 
     wrapper.instance().setState({
-      title: 'huxy',
-      body: 'hey huxy this is great.',
+      title: 'huxy 12',
+      body: 'hey huxy this is not great.',
       notesArray: [{ title: 'hey', body: 'its good', id: '0' }],
     });
 
@@ -70,12 +70,15 @@ describe('shallow render app dashboard', () => {
         if (item.id === '0') {
           // eslint-disable-next-line no-param-reassign
           item.title = state.title;
+          expect(item.title).toBe(state.title);
+          expect(item.title).not.toBeNull();
           // eslint-disable-next-line no-param-reassign
           item.body = state.body;
         }
         return item;
       });
     });
+
     wrapper.instance().onEditNote({ target: { value: 0 } });
   });
 
