@@ -23,7 +23,8 @@ const DeleteComponent = ({ onRemoveNote, obj }) => (
 
 DeleteComponent.propTypes = {
   onRemoveNote: PropTypes.func.isRequired,
-  obj: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  obj: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 export default DeleteComponent;
