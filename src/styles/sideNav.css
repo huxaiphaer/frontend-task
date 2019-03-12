@@ -31,12 +31,16 @@
 
 .header{
     color: #56276f;
+    margin-left: 20px;
 }
 
 .align-edit-and-delete-icons{
     margin-left: 700px;
 }
 
+.align-list-msg{
+    margin-left: 20px;
+}
 @media screen and (max-width: 360px) {
     .list{
         float: none;

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React, { Component } from 'react';
 import moment from 'moment';
+import { Row } from 'react-materialize';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { css } from 'glamor';
@@ -9,7 +10,6 @@ import SideBar from '../components/sideBar';
 import DisplayNote from '../components/displayNote';
 import SearchView from '../components/search';
 import AddNoteBtn from '../components/addNote';
-import styles from '../styles/search.css';
 import align from '../styles/alignAllComponents.css';
 
 
@@ -201,51 +201,51 @@ class App extends Component {
         note.title.toLowerCase().indexOf(search.toLowerCase()) !== -1);
       return (
       // eslint-disable-next-line react/jsx-filename-extension
-        <div>
-          <div>
-            <NavBar />
-            <ToastContainer />
-            <div className={align['align-components']}>
-              <div className={styles['search-box']}>
+        <div className={align['root-div']}>
+          <NavBar />
+          <ToastContainer />
+          <div className={`row ${align['root-div']}`}>
+            <div className={`col s3 ${align['style-side-nav']}`}>
+              <Row>
                 <SearchView
                   handleChange={this.onHandleChangeSearch}
                 />
-              </div>
-              <div className="row center-align">
-                <div className="col s4">
-                  <SideBar
-                    notesData={filteredNotes}
-                    onEditNote={this.onEditNote}
-                    onRemoveNote={this.onRemoveNote}
-                    openEditModalHandler={this.openEditModalHandler}
-                    openDeleteModalHandler={this.openDeleteModalHandler}
-                    search={search}
-                    titleError={titleError}
-                    bodyError={bodyError}
-                    obj={{ title, body, id }}
-                    handleChange={this.onHandleChange}
-                    onDisplayAllNote={this.onDisplayAllNote}
-                  />
-                </div>
-                <div className="col s7">
-                  <DisplayNote
-                    title={titleDisplay}
-                    body={bodyDisplay}
-                    handleChange={this.onHandleChange}
-                    onDisplayAllNote={this.onDisplayAllNote}
-                  />
-                </div>
-              </div>
+              </Row>
+
+              <Row>
+                <SideBar
+                  notesData={filteredNotes}
+                  onEditNote={this.onEditNote}
+                  onRemoveNote={this.onRemoveNote}
+                  openEditModalHandler={this.openEditModalHandler}
+                  openDeleteModalHandler={this.openDeleteModalHandler}
+                  search={search}
+                  titleError={titleError}
+                  bodyError={bodyError}
+                  obj={{ title, body, id }}
+                  handleChange={this.onHandleChange}
+                  onDisplayAllNote={this.onDisplayAllNote}
+                />
+              </Row>
+
             </div>
-            <div>
-              <AddNoteBtn
-                titleError={titleError}
-                bodyError={bodyError}
-                handleSubmit={this.onHandleSubmit}
+            <div className="col s9">
+              <DisplayNote
+                title={titleDisplay}
+                body={bodyDisplay}
                 handleChange={this.onHandleChange}
-                obj={this.state}
+                onDisplayAllNote={this.onDisplayAllNote}
               />
             </div>
+          </div>
+          <div>
+            <AddNoteBtn
+              titleError={titleError}
+              bodyError={bodyError}
+              handleSubmit={this.onHandleSubmit}
+              handleChange={this.onHandleChange}
+              obj={this.state}
+            />
           </div>
         </div>
       );
