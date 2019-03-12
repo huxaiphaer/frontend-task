@@ -53,7 +53,7 @@ const SideBar = ({
         </li>))}
       {/* eslint-disable-next-line react/jsx-closing-tag-location */}
     </ul>)
-      : <div><i>No notes available.</i></div>}
+      : <div className={styles['align-list-msg']}><i>No notes available.</i></div>}
     <Modal
       id="deleteModal"
       header=""
